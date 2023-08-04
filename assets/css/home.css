@@ -1,0 +1,48 @@
+body{
+    margin: 0;
+}
+
+div{
+    width: 300px;
+    margin: auto;
+}
+h1{
+    text-align: center;
+    color: gray;
+}
+
+li{
+    background-color: rgba(101, 101, 178, 0.676);
+    margin: 4px;
+    padding: 1px;
+}
+
+li:hover{
+    background-color: rgb(183, 183, 188);
+}
+
+#namespan {
+    margin-left: 5px;
+    float: left; /* Float the namespan to the left */
+}
+
+#closespan{
+    margin: 0px;
+    padding: 3px;
+    float: right;
+    background-color: white
+}
+
+#phonespan {
+    margin-right: 5px;
+    float: right; /* Float the phonespan to the right */
+}
+
+
+
+form{
+    text-align: center;
+}
+
+
+
