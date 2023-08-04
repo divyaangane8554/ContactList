@@ -2,8 +2,8 @@ const express = require('express');
 const path = require('path')
 const port = 8000;
 
-
 const mongoose = require('./assets/config/mongoose.js');
+const Contact = require('./models/contacts.js');
 
 const app = express();
 
@@ -69,12 +69,23 @@ app.post("/create-contact", function(req, res){
     // console.log(req.body.name);
     // console.log(req.body.phone);
 
-    contactList.push({
-        name: req.body.name,
-        phone: req.body.phone,
-    });
+    // contactList.push({
+    //     name: req.body.name,
+    //     phone: req.body.phone,
+    // });
 
+    //creating database to create
+    Contact.create({
+        name: req.body.name,
+        phone: req.body.phone
+    }, function(err, newContact){
+        if (err){console.log('error in creating a contact!');
+    return;}
+
+    console.log('')
+    });
     // contactList.push(req.body);
+
 
     return res.redirect('back');
 });
