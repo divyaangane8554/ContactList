@@ -82,12 +82,10 @@ app.post("/create-contact", function(req, res){
         if (err){console.log('error in creating a contact!');
     return;}
 
-    console.log('')
+    console.log('********','newContact');
+    return res.redirect('back');
     });
     // contactList.push(req.body);
-
-
-    return res.redirect('back');
 });
 
 // :phone is variable

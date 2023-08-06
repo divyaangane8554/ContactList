@@ -2,12 +2,15 @@
 const e = require('express');
 const mongoose = require('mongoose');
 
+const url = "mongodb://localhost:27017/ContactList"
+
 // mongoose.connect('mongodb://localhost:8000/contacts_list_db',{
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true,
 //   });
 
-mongoose.connect("mongodb+srv://root:root@cluster0.czwkk2i.mongodb.net/?retryWrites=true&w=majority")
+//mongoose.connect("mongodb+srv://root:root@cluster0.czwkk2i.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect(url, {})
 .then(()=>{
     console.log('Database connected')
 })
