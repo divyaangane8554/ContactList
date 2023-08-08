@@ -74,18 +74,19 @@ app.post("/create-contact", function(req, res){
     //     phone: req.body.phone,
     // });
 
-    //creating database to create
+    // contactList.push(req.body);
+
+    //return res.redirect('back');
+
     Contact.create({
         name: req.body.name,
-        phone: req.body.phone
+        phone: req.body.Contact
     }, function(err, newContact){
-        if (err){console.log('error in creating a contact!');
-    return;}
+        if (err){console.log('error in creating')
 
-    console.log('********','newContact');
-    return res.redirect('back');
-    });
-    // contactList.push(req.body);
+        }
+    }
+    )
 });
 
 // :phone is variable
