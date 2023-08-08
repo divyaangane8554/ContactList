@@ -1,0 +1,7 @@
+POST http://0.0.0.0:8000/create-contact
+Content-Type: application/json
+
+{
+    "name":"Rehan",
+    "phone":"1234567788"
+}

@@ -23,12 +23,12 @@
                 <% } %>
             </ol>
         </div>
-        <form action="/create-contact" method="POST">
-            <input type="text" name="name" placeholder="Enter Name..." required>
-            <input type="number" name="phone" placeholder="Enter Phone..." required>
+        <form action="/create-contact" method="POST" enctype="multipart/form-data" id="create-contact">
+            <input type="text" id="name" name="name" placeholder="Enter Name..." required>
+            <input type="number" id="phone" name="phone" placeholder="Enter Phone..." required>
 
             <button type="submit">Add contact</button>
         </form>
-        <script type="text/javascript" src="/js/home.js"></script>
+        <script type="text/javascript" src="./js/home.js"></script>
     </body>
 </html>

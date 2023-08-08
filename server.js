@@ -2,32 +2,21 @@ const express = require('express');
 const path = require('path')
 const port = 8000;
 
-const mongoose = require('./assets/config/mongoose.js');
+const mongoose = require("mongoose")
 const Contact = require('./models/contacts.js');
 
 const app = express();
 
+
+app.use(express.json());
+
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.urlencoded()); //Parser midllewhere
-app.use(express.static('assets')); //initialize of asset folder to use further directories
+app.use(express.static('assets')); 
 
-// middlewares
-//req is a object
-
-//middleware1
-// app.use(function(req,res, next){
-//     // console.log('middleware 1 called');
-//     req.myname="Divya";
-//     next(); //next is mandatory to jump to next steps,funtions
-// });
-
-// //middleware2
-// app.use(function(req, res, next){
-//     console.log("my name from mdw2", req.myname);
-//     next();
-// })
-
+mongoose.connect("mongodb://0.0.0.0:27017/Contact")
+.then(()=>console.log("Database connected"))
+.catch((err)=>console.log(err))
 var contactList = [
     {
         name: "divya",
@@ -41,18 +30,15 @@ var contactList = [
         name: "samir",
         phone: "8439898585"
     }
-    // other entered array will be added here
 ]
 
 //controller
-app.get("/", function(req, res){
-    // console.log(__dirname);
-    // res.send("<h1>this is some page</h1>");
-
-    // console.log("my name from route controller" ,req.myname)
+app.get("/",async function(req, res){
+  
+    const getAllContacts = await Contact.find();
     return res.render('home', {
         title: "my contact list",
-        contacts_list: contactList
+        contacts_list: getAllContacts
     });
 });
 
@@ -63,36 +49,18 @@ app.get("/profile", function(req, res){
     });
 });
 
-app.post("/create-contact", function(req, res){
-    // return res.redirect('/profile');
-    // console.log(req.body);
-    // console.log(req.body.name);
-    // console.log(req.body.phone);
-
-    // contactList.push({
-    //     name: req.body.name,
-    //     phone: req.body.phone,
-    // });
-
-    // contactList.push(req.body);
-
-    //return res.redirect('back');
-
-    Contact.create({
-        name: req.body.name,
-        phone: req.body.Contact
-    }, function(err, newContact){
-        if (err){console.log('error in creating')
-
-        }
-    }
-    )
+app.post("/create-contact", async function(req, res){
+    try{
+        await Contact.create(req.body)
+        res.redirect("/")
+    
+}
+catch(error){
+    return res.status(500).json({error})
+}
 });
 
-// :phone is variable
 app.get('/delete-contact', function(req, res){
-    // get the query from url
-    //console.log(req.query);
     let phone = req.query.phone;
 
     let contactIndex = contactList.findIndex(contact => contact.phone == phone);
@@ -108,5 +76,5 @@ app.listen(port, function(err){
     if(err){
         console.log("Oops there is prob;em in server...");
     }
-    console.log("YEs! server working fine");
+    console.log(`YEs! server working fine on port ${port}`);
 })

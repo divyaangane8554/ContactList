@@ -3,13 +3,11 @@ const Schema = mongoose.Schema;
 
 const contactSchema = new Schema({
   name: {
-    type: String,
-    required: true
-  },
+    type: String
+    },
   phone: {
-    type: String,
-    required: true
-  }
+    type: String
+    }
 });
 
 const Contact = mongoose.model('Contact', contactSchema);
