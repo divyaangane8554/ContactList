@@ -26,7 +26,7 @@
 
 const mongoose = require('mongoose');
 
-const url = "mongodb://localhost:27017/ContactList";
+const url = "mongodb://0.0.0.0:27017/Contact";
 
 mongoose.connect(url, {
   useNewUrlParser: true,
